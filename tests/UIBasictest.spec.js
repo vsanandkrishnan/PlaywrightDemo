@@ -33,7 +33,7 @@ test.only("Browser Context Playwright test", async ({ browser }) => {
   await password.fill("learning");
   await signInButton.click();
 
-  //await Promise.all([page.waitForNavigation(), signInButton.click()]);
+  await Promise.all([page.waitForNavigation(), signInButton.click()]);
 
   //to get the title after logging in
   // console.log(await cardTitles.nth(0).textContent());
@@ -41,7 +41,7 @@ test.only("Browser Context Playwright test", async ({ browser }) => {
 
   //wait for all the service calls to be completed
   //await page.waitForLoadState("networkidle");
-  await cardTitles.waitFor();
+  //await cardTitles.waitFor();
   //To Get all the content titles
   const allTitles = await cardTitles.allTextContents();
   console.log(allTitles);
