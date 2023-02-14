@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
-test.only("Browser Context Playwright test", async ({ browser }) => {
+test("Browser Context Playwright test", async ({ browser }) => {
   //Playwright code- Chrome plugins/cookies
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -47,9 +47,70 @@ test.only("Browser Context Playwright test", async ({ browser }) => {
   console.log(allTitles);
 });
 
-test("Page Playwright test", async ({ page }) => {
+test("UI Controls", async ({ page }) => {
   //Playwright code
-  await page.goto("https://www.google.com/");
-  const title = await page.title();
-  await expect(page).toHaveTitle("Google");
+  page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+
+  //Locators
+  const userName = page.locator("#username");
+  const password = page.locator("#password");
+  const signInButton = page.locator("#signInBtn");
+
+  //Static dropdown Buttons
+  const dropdown = page.locator("select.form-control");
+  await dropdown.selectOption("consult");
+
+  //Radio Buttons
+  const radioButtons = page.locator(".form-check-inline input");
+  await radioButtons.nth(1).click();
+
+  //Pop alert click
+  await page.locator("#okayBtn").click();
+
+  //assertions for radio buttons
+  await expect(radioButtons.nth(1)).toBeChecked();
+  const isChecked = radioButtons.nth(1).isChecked();
+  console.log(isChecked);
+
+  //Click Checkboxes
+  const checkBox = page.locator("#terms");
+  await checkBox.click();
+
+  //assertions for checkbox
+  await expect(checkBox).toBeChecked();
+
+  //Uncheck checkbox
+  await checkBox.uncheck();
+  expect(await checkBox.isChecked()).toBeFalsy();
+
+  //Blinking link and check the attribute
+  const documentLink = page.locator("a[href*='document']");
+  await expect(documentLink).toHaveAttribute("class", "blinkingText");
+
+  //await page.pause();
+});
+
+test("Child Windows Handling", async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+
+  //blinking link
+  const documentLink = page.locator("a[href*='document']");
+
+  const [newPage] = await Promise.all([
+    context.waitForEvent("page"),
+    documentLink.click(),
+  ]);
+  //New Page locator
+  const textLink = newPage.locator(".red");
+  const text = await textLink.textContent();
+  console.log(text);
+  const emailId = text.split("@")[1].split(" ")[0];
+  console.log(emailId);
+
+  const userName = page.locator("#username");
+  await userName.fill(emailId);
+
+  await page.pause();
 });
