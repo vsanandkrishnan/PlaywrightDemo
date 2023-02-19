@@ -35,7 +35,7 @@ test("Client Application Playwright Test", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/client");
 
   await page.waitForLoadState("networkidle");
-  await page.pause();
+  //await page.pause();
   await page.locator("button[routerlink*='orders']").click();
   await page.locator("tbody").waitFor();
 
