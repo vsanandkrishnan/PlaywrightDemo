@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test tests/WebAPIPart1.spec.js"
+    "test": "npx playwright test tests/NetworkTest.spec.js"
   },
   "author": "",
   "license": "ISC",
