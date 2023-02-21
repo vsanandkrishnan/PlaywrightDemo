@@ -41,6 +41,6 @@ test("Screenshot & Visual comparison", async ({ page }) => {
 //Visual Comparison
 test.only("Visual", async ({ page }) => {
   await page.goto("https://www.google.com/");
-  await page.locator("#hero div input[type='search']").waitFor();
+  //await page.locator("#hero div input[type='search']").waitFor();
   expect(await page.screenshot()).toMatchSnapshot("landing.png");
 });
