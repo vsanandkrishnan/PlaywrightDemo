@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
-test.only("Browser Context Playwright test", async ({ browser }) => {
+test("Browser Context Playwright test", async ({ browser }) => {
   //Playwright code- Chrome plugins/cookies
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -120,5 +120,5 @@ test("Child Windows Handling", async ({ browser }) => {
   const userName = page.locator("#username");
   await userName.fill(emailId);
 
-  await page.pause();
+  // await page.pause();
 });

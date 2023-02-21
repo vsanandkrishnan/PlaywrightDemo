@@ -112,5 +112,5 @@ test("Child Windows Handling", async ({ browser }) => {
   const userName = page.locator("#username");
   await userName.fill(emailId);
 
-  await page.pause();
+  //await page.pause();
 });

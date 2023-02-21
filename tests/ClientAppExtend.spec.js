@@ -1,18 +1,18 @@
 const { test, expect } = require("@playwright/test");
+const { customtest } = require("../Utils/test-base");
 const { POManager } = require("../PageObjects/POManager");
 const dataSet = JSON.parse(
   JSON.stringify(require("../test-data/PlaceOrderTestData.json"))
 );
 
-for (let data of dataSet) {
-  test(`Client Application Playwright Test ${data.productName}`, async ({
-    page,
-  }) => {
+customtest(
+  "Client Application Playwright Test",
+  async ({ page, testDataOrder }) => {
     //Playwright code- Chrome plugins/cookies
-    const productName = data.productName;
-    const emailId = data.emailId;
-    const password = data.password;
-    const text = data.text;
+    const productName = testDataOrder.productName;
+    const emailId = testDataOrder.emailId;
+    const password = testDataOrder.password;
+    const text = testDataOrder.text;
 
     //POManager
     const poManager = new POManager(page);
@@ -30,7 +30,7 @@ for (let data of dataSet) {
     //Checkout Page
     const cartSection = page.locator("div li");
     await cartSection.first().waitFor();
-    let local = `h3:has-text('${data.productName}')`;
+    let local = `h3:has-text('${productName}')`;
     const val = await page.locator(local).isVisible();
     expect(val).toBeTruthy();
     await page.locator("text=Checkout").click();
@@ -55,5 +55,5 @@ for (let data of dataSet) {
 
     const orderIdFromDetailsPage = await detailsPage.getOrderDetailsId();
     expect(orderId.includes(orderIdFromDetailsPage)).toBeTruthy();
-  });
-}
+  }
+);
