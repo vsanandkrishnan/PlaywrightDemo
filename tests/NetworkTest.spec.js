@@ -25,7 +25,7 @@ test.beforeAll(async () => {
 
 test.beforeEach(() => {});
 
-test("Client Application Playwright Test", async ({ page }) => {
+test("@API Client Application Playwright Test", async ({ page }) => {
   //Playwright code- Chrome plugins/cookies
   token = response.token;
   orderId = response.orderId;

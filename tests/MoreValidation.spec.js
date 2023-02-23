@@ -1,5 +1,7 @@
 const { test, expect } = require("@playwright/test");
 
+// test.describe.configure({ mode: "parallel" });
+test.describe.configure({ mode: "serial" });
 test("Pop Up Validations", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
   //   await page.goto("https://www.google.co.in/");

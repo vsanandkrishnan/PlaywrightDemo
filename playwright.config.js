@@ -5,6 +5,7 @@ module.exports = defineConfig({
   testDir: "./tests",
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
+
   expect: {
     timeout: 5000,
   },
@@ -38,10 +39,10 @@ module.exports = defineConfig({
     //   name: "chromium",
     //   use: { ...devices["Desktop Chrome"] },
     // },
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
+    // {
+    //   name: "firefox",
+    //   use: { ...devices["Desktop Firefox"] },
+    // },
     //{
     //   name: "webkit",
     //   use: { ...devices["Desktop Safari"] },
@@ -56,10 +57,10 @@ module.exports = defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
     /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { channel: 'msedge' },
-    // },
+    {
+      name: "Microsoft Edge",
+      use: { channel: "msedge" },
+    },
     // {
     //   name: 'Google Chrome',
     //   use: { channel: 'chrome' },

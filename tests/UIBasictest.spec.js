@@ -47,7 +47,7 @@ test("Browser Context Playwright test", async ({ browser }) => {
   console.log(allTitles);
 });
 
-test("UI Controls", async ({ page }) => {
+test("@web UI Controls", async ({ page }) => {
   //Playwright code
   page.goto("https://rahulshettyacademy.com/loginpagePractise/");
 
@@ -90,7 +90,7 @@ test("UI Controls", async ({ page }) => {
   //await page.pause();
 });
 
-test("Child Windows Handling", async ({ browser }) => {
+test("@web Child Windows Handling", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
   page.goto("https://rahulshettyacademy.com/loginpagePractise/");

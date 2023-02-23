@@ -5,7 +5,7 @@ const dataSet = JSON.parse(
 );
 
 for (let data of dataSet) {
-  test(`Client Application Playwright Test ${data.productName}`, async ({
+  test(`@web Client Application Playwright Test ${data.productName}`, async ({
     page,
   }) => {
     //Playwright code- Chrome plugins/cookies
@@ -30,7 +30,7 @@ for (let data of dataSet) {
     //Checkout Page
     const cartSection = page.locator("div li");
     await cartSection.first().waitFor();
-    let local = `h3:has-text('${data.productName}')`;
+    let local = `h3:has-text('${productName}')`;
     const val = await page.locator(local).isVisible();
     expect(val).toBeTruthy();
     await page.locator("text=Checkout").click();
